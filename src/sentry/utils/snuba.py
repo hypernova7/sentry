@@ -222,7 +222,7 @@ _snuba_pool = connection_from_url(
         # our requests are POST and they don't mutate, so they
         # are safe to retry. Without this, we aren't
         # actually retrying at all.
-        method_whitelist={"GET", "POST"},
+        method_whitelist={"GET", "POST", "DELETE"},
     ),
     timeout=30,
     maxsize=10,
