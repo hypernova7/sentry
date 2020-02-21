@@ -56,15 +56,28 @@ class MenuItem extends React.Component<Props> {
         </Link>
       );
     }
+    if (this.props.href) {
+      return (
+        <a
+          title={this.props.title}
+          onClick={this.handleClick}
+          href={this.props.href}
+          tabIndex={-1}
+        >
+          {this.props.children}
+        </a>
+      );
+    }
+
     return (
-      <a
+      <span
+        className="menu-target"
         title={this.props.title}
         onClick={this.handleClick}
-        href={this.props.href}
         tabIndex={-1}
       >
         {this.props.children}
-      </a>
+      </span>
     );
   };
 
