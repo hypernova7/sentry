@@ -204,6 +204,7 @@ class RetrySkipTimeout(urllib3.Retry):
         if error and isinstance(error, urllib3.exceptions.ReadTimeoutError):
             raise six.reraise(type(error), error, _stacktrace)
 
+        metrics.incr("snuba.client.retry", sample_rate=1.0, tags={"method": method, "url": url})
         return super(RetrySkipTimeout, self).increment(
             method=method,
             url=url,
